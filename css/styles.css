@@ -1,0 +1,1056 @@
+/* =============================================
+RESET Y ESTILOS GLOBALES
+   ============================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../img/Fondo.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =============================================
+CABECERA (GLOBAL)
+   ============================================= */
+header.cabezera {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    background: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.icono1{
+    background-image: url('../img/Logo\ Imagen.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.nombre {
+    background: linear-gradient(to bottom, #96703d 0%, #f3d596 50%, #96703d 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.btn-explora {
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.8s ease;
+}
+
+.nav-botones {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.carrito, .nosotros, .productos, .volver-inicio, .iniciar-sesion, .registrarse, .salir {
+    padding: 12px 35px;
+    background: rgba(20, 20, 20, 0.8); 
+    -webkit-text-fill-color: initial; 
+    cursor: pointer;
+    border-radius: 50px; 
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #c5a059;
+}
+
+.carrito h2, .nosotros h2, .productos h2, .volver-inicio h2, .iniciar-sesion h2, .registrarse h2, .salir h2, .carrito, .nosotros, .productos, .volver-inicio, .iniciar-sesion, .registrarse {
+    background: linear-gradient(to bottom, #96703d 0%, #f3d596 50%, #96703d 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.salir h2 {
+    background: linear-gradient(to bottom, #ff9999 0%, #8b0000 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.carrito:hover, .nosotros:hover, .productos:hover, .volver-inicio:hover, .iniciar-sesion:hover, .registrarse:hover {
+    border-color: #f3d596;
+    background: #1a1a1a;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+}
+
+.salir:hover {
+    border-color: #ff9999;
+    background: #150000;
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
+}
+
+.carrito::after, .nosotros::after, .productos::after, .volver-inicio::after, .iniciar-sesion::after, .registrarse::after, .salir::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.2) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: -1; 
+}
+
+.salir::after {
+    background: radial-gradient(circle, rgba(139, 0, 0, 0.4) 0%, transparent 70%);
+}
+
+.carrito:hover::after, .nosotros:hover::after, .productos:hover::after {
+    transform: scale(4);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =============================================
+PÁGINA PRINCIPAL (Hero / Slider de productos)
+   ============================================= */
+#hero-container, [class^="producto-"] {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    padding-top: 80px;
+    padding-bottom: 60px;
+}
+
+.indicadores {
+    position: fixed;
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.punto {
+    width: 12px;
+    height: 12px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    margin: 15px 0;
+    transition: 0.4s;
+}
+
+.punto.active {
+    background: var(--color-accent);
+    transform: scale(1.3);
+}
+
+.producto-1 { --color-accent: #b48d6c; }
+.producto-2 { --color-accent: #8b0000; }
+.producto-3 { --color-accent: #c5a059; }
+
+#titulo-principal {
+    font-size: 5rem;
+    font-weight: bold;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(to bottom, #96703d 0%, #f3d596 50%, #96703d 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+}
+
+#titulo-principal span {
+    font-size: 5rem;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #96703d 0%, #f3d596 50%, #96703d 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.info-producto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.btn-explora {
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.btn-explora:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+}
+
+/* Actualizacion de medida de la pagina principal */
+@media (max-width: 850px) {
+    #hero-container, [class^="producto-"] {
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        padding: 100px 5% 40px 5%;
+        flex: 1;
+        height: auto;
+        min-height: 0;
+    }
+
+    #titulo-principal {
+        font-size: 3rem;
+    }
+    
+    #titulo-principal span {
+        font-size: 3rem;
+    }
+    
+    .info-producto {
+        align-items: center;
+        text-align: center;
+    }
+
+    .visual-producto img {
+        max-width: 100%;
+        height: auto;
+        max-height: 40vh;
+        object-fit: contain;
+    }
+}
+
+/* =============================================
+MENÚ HAMBURGUESA (MÓVIL)
+   ============================================= */
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1100;
+}
+
+.hamburger {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger::before, .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: inherit;
+    border-radius: inherit;
+    transition: inherit;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+.hamburger::after {
+    top: 8px;
+}
+
+@media (max-width: 850px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-botones {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        z-index: 999;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 20px 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(15px);
+        border-radius: 0 0 15px 15px;
+        border-top: 1px solid rgba(197, 160, 89, 0.3);
+    }
+
+    .nav-botones.activo {
+        display: flex;
+    }
+
+    header.cabezera {
+        position: fixed;
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: space-between;
+        padding: 15px 5%;
+    }
+
+    .nombre {
+        flex: 1;
+    }
+
+    .nav-botones button {
+        width: 80%;
+        max-width: 300px;
+        margin: 5px 0;
+    }
+}
+
+/* =============================================
+PÁGINA SECUNDARIA (Sección "Nosotros")
+   ============================================= */
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    margin-top: 80px;
+    gap: 20px;
+    padding: 20px 5%;
+}
+
+.brand-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0; 
+}
+
+.brand-name {
+    margin: 0 0 20px 0;
+}
+
+.brand-name img {
+    width: 280px;
+    height: auto;
+    display: block;
+}
+
+.logo-container {
+    width: 160px;
+    height: auto;
+}
+
+.logo-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.content-section {
+    flex: 1;
+    text-align: center;
+    max-width: 600px;  
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: #d1d1d1; 
+    letter-spacing: 0.3px;
+}
+
+.content-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* Media query para la sección "Nosotros" */
+@media (max-width: 850px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .brand-name img {
+        width: 220px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .logo-container {
+        width: 130px;
+    }
+
+    .content-section p {
+        font-size: 1rem;
+    }
+}
+
+/* ===========================================
+PAGINA DE PRODUCTOS
+    ========================================== */
+
+.catalogo-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 110px 5% 40px 5%;
+    height: auto;
+    min-height: 100vh;
+}
+
+/* Buscador */
+.search-section {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 35px;
+    z-index: 1;
+}
+
+.search-section h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.search-bar-container input {
+    width: 100%;
+    padding: 14px 25px;
+    border-radius: 50px;
+    border: none;
+    background: white;
+    font-size: 1rem;
+    color: #1a1a1a;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* =============================================
+TARJETAS DINÁMICAS
+   ============================================= */
+.tarjetas-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 5%;
+}
+
+/* Tablet: 2 columnas fijas */
+@media (min-width: 620px) and (max-width: 949px) {
+    .tarjetas-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        justify-items: center;
+        max-width: 1200px;
+        margin: 0;
+        padding: 40px 0;
+    }
+}
+
+/* Escritorio: 3 columnas fijas */
+@media (min-width: 950px) {
+    .tarjetas-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        justify-items: center;
+        max-width: 1200px;
+        margin: 0;
+        padding: 40px 0;
+    }
+}
+
+.card {
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 15px;
+    position: relative;
+    width: 280px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+}
+
+.card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.card-titulo {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card-descripcion {
+    font-size: 0.9rem;
+    color: #d1d1d1;
+    margin-bottom: 15px;
+}
+
+.card-precio {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card-boton {
+    padding: 10px 25px;
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid #c5a059;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: bold;
+}
+
+.card-boton:hover {
+    background: #1a1a1a;
+    border-color: #f3d596;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+}
+
+.card-boton.agregado {
+    background: #2e7d32;
+    border-color: #4caf50;
+    color: white;
+    -webkit-text-fill-color: white;
+    cursor: default;
+    opacity: 0.9;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+.card-popular {
+    border-color: #f3d596;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
+}
+
+.card-medida {
+    display: block;
+    font-size: 0.8rem;
+    color: #b48d6c;
+    margin-bottom: 10px;
+}
+
+.card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(to bottom, #96703d, #f3d596);
+    color: #1a1a1a;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* =============================================
+PÁGINA DE CARRITO
+   ============================================= */
+.carrito-page {
+    display: flex;
+    gap: 30px;
+    padding: 100px 5% 40px;
+    flex: 1;
+    align-items: flex-start;
+}
+
+.carrito-items {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.carrito-vacio {
+    color: #d1d1d1;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 12px;
+    padding: 15px 20px;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.carrito-item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.carrito-item-info {
+    flex: 1;
+    min-width: 150px;
+}
+
+.carrito-item-titulo {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.carrito-item-descripcion {
+    font-size: 0.85rem;
+    color: #d1d1d1;
+    margin-bottom: 4px;
+}
+
+.carrito-item-medida {
+    font-size: 0.8rem;
+    color: #b48d6c;
+}
+
+.carrito-item-precio-unitario, .carrito-item-subtotal {
+    font-size: 1rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.carrito-item-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-cantidad {
+    background: rgba(197, 160, 89, 0.2);
+    border: 1px solid #c5a059;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.btn-cantidad:hover {
+    background: #c5a059;
+    color: #1a1a1a;
+}
+
+.cantidad-numero {
+    min-width: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-eliminar {
+    background: transparent;
+    border: 1px solid #b48d6c;
+    color: #b48d6c;
+    padding: 6px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.btn-eliminar:hover {
+    background: #b48d6c;
+    color: #1a1a1a;
+}
+
+.carrito-resumen {
+    flex: 1;
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    position: sticky;
+    top: 100px;
+}
+
+.carrito-resumen h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#carrito-total {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.btn-comprar {
+    background: linear-gradient(to bottom, #96703d, #f3d596);
+    color: #1a1a1a;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.btn-comprar:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+}
+
+@media (max-width: 600px) {
+    .carrito-page {
+        flex-direction: column;
+    }
+
+    .carrito-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .carrito-item-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .carrito-resumen {
+        position: static;
+        width: 100%;
+    }
+}
+
+/* =============================================
+PAGINA DE USUARIO
+============================================= */
+
+    .login-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 130px); 
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .login-section {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    /* Ajustado exactamente igual al diseño de tus .card de productos */
+    .login-card {
+        background: rgba(20, 20, 20, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(197, 160, 89, 0.3);
+        border-radius: 15px;
+        padding: 40px 30px;
+        text-align: center;
+        color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Efecto hover idéntico al de las tarjetas del catálogo */
+    .login-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+    }
+
+    /* Título con el gradiente dorado oficial de EL BARRILETE */
+    .login-card h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .login-subtitle {
+        text-align: center;
+        color: #d1d1d1;
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+        letter-spacing: 0.5px;
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+        text-align: left; /* Alinea los labels a la izquierda para un llenado cómodo */
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #b48d6c; /* Tono bronce/dorado suave para las etiquetas */
+    }
+
+    /* Inputs adaptados a la estética oscura */
+    .form-group input {
+        width: 100%;
+        padding: 14px 20px;
+        border-radius: 50px; /* Redondeados en sintonía con tus buscadores y botones */
+        border: 1px solid rgba(197, 160, 89, 0.4);
+        background: rgba(10, 10, 10, 0.6);
+        font-size: 1rem;
+        color: white;
+        outline: none;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+        border-color: #f3d596;
+        background: rgba(26, 26, 26, 0.9);
+        box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+    }
+
+    /* Botón de ingreso modificado para lucir como tus botones dorados .card-boton */
+    .btn-primary-link {
+        display: inline-block;
+        width: 100%;
+        padding: 5px 0;
+        background: rgba(20, 20, 20, 0.8);
+        border: 1px solid #c5a059;
+        border-radius: 50px;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary-link h2 {
+        margin: 8px 0;
+        font-size: 0.9rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        /* Sobrescribimos el gradiente para que el texto del botón responda correctamente */
+        background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .btn-primary-link:hover {
+        background: #1a1a1a;
+        border-color: #f3d596;
+        box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+    }
+
+    .btn-primary-link:active {
+        transform: scale(0.97);
+    }
+
+    /* Caja de alertas de error con estilo integrado */
+    .error-box {
+        background-color: rgba(139, 0, 0, 0.2);
+        color: #ff9999;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #8b0000;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+/* ====================
+PÁGINA DE REGISTRO
+==================== */
+
+.register-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 130px); 
+        margin-top: 80px; 
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .register-section {
+        width: 100%;
+        max-width: 440px;
+    }
+
+    .register-card {
+        background: rgba(20, 20, 20, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(197, 160, 89, 0.3);
+        border-radius: 15px;
+        padding: 35px 30px;
+        text-align: center;
+        color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .register-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+    }
+
+    .register-card h2 {
+        text-align: center;
+        margin-bottom: 8px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .register-subtitle {
+        text-align: center;
+        color: #d1d1d1;
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+        letter-spacing: 0.5px;
+    }
+
+/* =============================================
+PIE DE PÁGINA (GLOBAL)
+============================================= */
+
+footer {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    padding: 20px 5%;
+    margin-top: auto;
+}
+
+.creditos {
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    background: linear-gradient(to bottom, #96703d 0%, #f3d596 50%, #96703d 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
