@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1,
+        "titulo": "Ron Viejo de Caldas",
+        "descripcion": "Añejado 8 años en barricas de roble",
+        "imagen": "img/Catalogo/Ron_Viejo_de_Caldas.png",
+        "precio": 58800,
+        "medida": "750 ml",
+        "popular": true
+    },
+    {
+        "id": 2,
+        "nombre": "Aguardiente Amarillo",
+        "descripcion": "Edisión estandar",
+        "imagen": "img/Catalogo/Aguardiente_Amarillo.png",
+        "precio": 55000,
+        "medida": "750 ml",
+        "popular": false
+    },
+    {
+        "id": 3,
+        "nombre": "Olmeca Silver",
+        "descripcion": "0 años (Sin contacto con barricas de madera)",
+        "imagen": "img/Catalogo/Olmeca_Silver.png",
+        "precio": 91100,
+        "medida": "750 ml",
+        "popular": false
+    },
+    {
+        "id": 4,
+        "nombre": "Buchanan's Deluxe",
+        "descripcion": "12 años en barricas de roble seleccionadas",
+        "imagen": "img/Catalogo/Buchanas_Deluxe.png",
+        "precio": 90000,
+        "medida": "750 ml",
+        "popular": false
+    },
+    {
+        "id": 5,
+        "nombre": "Aguardiente Selva",
+        "descripcion": "Aguardiente sin azúcar",
+        "imagen": "img/Catalogo/Aguardiente_Selva.png",
+        "precio": 52000,
+        "medida": "750 ml",
+        "popular": false
+    },
+    {
+        "id": 6,
+        "nombre": "Olmeca",
+        "descripcion": "breve periodo de maduración en barricas de roble americano",
+        "imagen": "img/Catalogo/Olmeca_Gold.png",
+        "precio": 84000,
+        "medida": "750 ml",
+        "popular": true
+    },
+    {
+        "id": 7,
+        "nombre": "Black & White",
+        "descripcion": "3 años en barricas de roble",
+        "imagen": "img/Catalogo/Black_White.png",
+        "precio": 42000,
+        "medida": "750 ml",
+        "popular": false
+    },
+    {
+        "id": 8,
+        "nombre": "Aguardiente Original",
+        "descripcion": "Aguardiente sin azúcar",
+        "imagen": "img/Catalogo/Aguardiente_Original.png",
+        "precio": 50000,
+        "medida": "750 ml",
+        "popular": false
+    },
+    {
+        "id": 9,
+        "nombre": "Smirnoff Lulo",
+        "descripcion": "Licor de vodka saborizado",
+        "imagen": "img/Catalogo/Smirnoff_Lulo.png",
+        "precio": 55000,
+        "medida": "750 ml",
+        "popular": false
+    }
+]

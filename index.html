@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL BARRILETE</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="main.js" defer></script>
+    <link  rel= "apple-touch-icon"  sizes= "57x57"  href= "favicon/apple-icon-57x57.png" >
+    <link  rel= "apple-touch-icon"  sizes= "60x60"  href= "favicon/apple-icon-60x60.png" >
+    <link  rel= "apple-touch-icon"  sizes= "72x72"  href= "favicon/apple-icon-72x72.png" >
+    <link  rel= "apple-touch-icon"  sizes= "76x76"  href= "favicon/apple-icon-76x76.png" >
+    <link  rel= "apple-touch-icon"  sizes= "114x114"  href= "favicon/apple-icon-114x114.png" >
+    <link  rel= "apple-touch-icon"  sizes= "120x120"  href= "favicon/apple-icon-120x120.png" >
+    <link  rel= "apple-touch-icon"  sizes= "144x144"  href= "favicon/apple-icon-144x144.png" >
+    <link  rel= "apple-touch-icon"  sizes= "152x152"  href= "favicon/apple-icon-152x152.png" >
+    <link  rel= "apple-touch-icon"  sizes= "180x180"  href= "favicon/apple-icon-180x180.png" >
+    <link  rel= "icon"  type= "image/png"  sizes= "192x192"   href= "favicon/android-icon-192x192.png" >
+    <link  rel= "icon"  type= "image/png"  sizes= "32x32"  href= "favicon/favicon-32x32.png" >
+    <link  rel= "icon"  type= "image/png"  sizes= "96x96"  href= "favicon/favicon-96x96.png" >
+    <link  rel= "icon"  type= "image/png"  sizes= "16x16"  href= "favicon/favicon-16x16.png" >
+    <link  rel= "manifest"  href= "favicon/manifest.json" >
+    <meta  name= "msapplication-TileColor"  content= "#ffffff" >
+    <meta  name= "msapplication-TileImage"  content= "/ms-icon-144x144.png" ><meta  name= "theme-color"  content= "#ffffff" >
+</head>
+<body>
+    <header id="cabezera" class="cabezera">
+    <a href="index.html" class="nombre">
+        <span class="icono1"></span>
+        <h1>EL BARRILETE</h1>
+    </a>
+    
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+        <span class="hamburger"></span>
+    </button>
+
+    <nav class="nav-botones" id="nav-botones">
+        <a href="index_nosotros.html" class="nosotros private-nav hidden">
+            <h2>NOSOTROS</h2>
+        </a>
+        <a href="index_productos.html" class="productos private-nav hidden">
+            <h2>PRODUCTOS</h2>
+        </a>
+        <a href="index_carrito.html" class="carrito private-nav hidden">
+            <h2>CARRITO</h2>
+        </a>
+
+        <a href="#" id="btn-logout" class="salir private-nav">
+            <h2>SALIR</h2>
+        </a>
+        
+        <a href="index_login.html" class="iniciar-sesion public-nav">
+            <h2>INICIAR SESIÓN</h2>
+        </a>
+        <a href="index_registro.html" class="registrarse public-nav">
+            <h2>REGISTRARSE</h2>
+        </a>
+    </nav>
+    </header>
+
+    <main id="hero-container" class="producto-1">
+        <div class="info-producto">
+            <h1 id="titulo-principal">RON VIEJO <br> <span>DE CALDAS</span></h1>
+            <button id="btn-accion" class="btn-explora">Explora la colección</button>
+        </div>
+        <div class="visual-producto">
+            <img id="img-dinamica" src="img/producto1.png" alt="Producto">
+        </div>
+        <div class="indicadores">
+            <div class="punto active"></div>
+            <div class="punto"></div>
+            <div class="punto"></div>
+        </div>
+    </main>
+
+    <footer>
+        <span class="creditos">Basante Andres, Belalcazar Naomy, Cortes Kevyn, Escobar Cristiam, Gonzales Juan</span>
+    </footer>
+</body>
+</html>
