@@ -1,0 +1,17 @@
+[
+    {
+        "titulo": "BUCHANA'S <br> <span>DELUXE</span>",
+        "imagen": "img/producto-1.png",
+        "clase": "producto-1"
+    },
+    {
+        "titulo": "RON VIEJO <br> <span>DE CALDAS</span>",
+        "imagen": "img/producto-2.png",
+        "clase": "producto-2"
+    },
+    {
+        "titulo": "AGUARDIENTE <br> <span>AMARILLO</span>",
+        "imagen": "img/producto-3.png",
+        "clase": "producto-3"
+    }
+]
