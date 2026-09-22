@@ -296,18 +296,3 @@ En `index_login.html` el enlace **REGISTRARSE** usa la clase CSS `iniciar-sesion
 - Las contraseñas se guardan en texto plano en `localStorage`. Es aceptable en un proyecto académico sin servidor, pero no en producción.
 
 ---
-
-## 8. Cómo ejecutar
-
-El proyecto usa módulos ES (`import`/`export`) y `fetch`, por eso **debe abrirse desde un servidor local**, no con doble clic sobre el HTML:
-
-- VS Code: extensión *Live Server* → clic derecho en `index.html` → *Open with Live Server*.
-- O en la terminal, dentro de la carpeta: `python -m http.server 8000` y abrir `http://localhost:8000`.
-
-Pruebas automáticas (requiere Node.js 18 o superior):
-
-```
-npm test
-```
-
-Resultado esperado: `# pass 11  # fail 0`.
