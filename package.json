@@ -1,0 +1,10 @@
+{
+  "name": "el-barrilete",
+  "version": "2.0.0",
+  "description": "Tienda de licores El Barrilete - versión orientada a objetos (SOLID)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}
