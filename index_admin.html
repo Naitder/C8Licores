@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C8LICORES · Panel de administración</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/tema-c8licores.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/vendedor.css">
+    <link rel="stylesheet" href="css/dialogo.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <script type="module" src="js/admin/main-admin.js" defer></script>
+    <meta name="theme-color" content="#0d0a07">
+</head>
+<body class="admin-body pie-fijo">
+    <div id="admin-cargando" class="admin-cargando">Cargando panel…</div>
+
+    <div id="admin-app" class="admin-layout oculto">
+        <aside class="admin-menu">
+            <a href="index.html" class="c8-logo admin-logo"><span class="c8-logo-badge">C8</span><span class="c8-logo-texto">LICORES</span></a>
+            <button type="button" class="admin-menu-toggle" aria-expanded="false" aria-controls="admin-nav">
+                <span class="admin-menu-toggle-barras" aria-hidden="true"></span>Menú
+            </button>
+            <p class="admin-usuario">Sesión: <strong id="admin-usuario"></strong></p>
+
+            <nav class="admin-nav" id="admin-nav" aria-label="Secciones del panel">
+                <button type="button" data-seccion="resumen" class="activo">Resumen</button>
+                <button type="button" data-seccion="productos">Productos</button>
+                <button type="button" data-seccion="promociones">Promociones</button>
+                <button type="button" data-seccion="pedidos">Pedidos</button>
+                <button type="button" data-seccion="pedidos-web">Pedidos web</button>
+                <button type="button" data-seccion="venta">Venta en tienda</button>
+                <button type="button" data-seccion="facturas">Facturas</button>
+                <button type="button" data-seccion="turnos">Turnos</button>
+                <button type="button" data-seccion="vendedores">Vendedores</button>
+                <button type="button" data-seccion="jornadas">Jornadas</button>
+                <button type="button" data-seccion="usuarios">Usuarios</button>
+                <button type="button" data-seccion="auditoria">Auditoría</button>
+                <button type="button" data-seccion="perfil">Mi perfil</button>
+            </nav>
+
+            <div class="admin-menu-pie">
+                <a href="index_vendedor.html" class="admin-enlace">Panel de vendedor</a>
+                <a href="index.html" class="admin-enlace">Ver tienda</a>
+                <button type="button" id="admin-salir" class="admin-boton secundario">Cerrar sesión</button>
+            </div>
+        </aside>
+
+        <main class="admin-contenido">
+            <div id="admin-aviso" class="admin-aviso oculto" role="status"></div>
+
+            <!-- Cambio obligatorio de la contraseña temporal -->
+            <section id="sec-cambio" class="admin-tarjeta oculto">
+                <h2 class="admin-titulo">Cambia tu contraseña</h2>
+                <p class="admin-texto">Por seguridad, debes reemplazar la contraseña inicial antes de usar el panel.</p>
+                <form id="form-cambio" class="admin-form">
+                    <label>Contraseña actual <input type="password" name="actual" required autocomplete="current-password"></label>
+                    <label>Nueva contraseña (mínimo 6 caracteres) <input type="password" name="nueva" required minlength="6" autocomplete="new-password"></label>
+                    <label>Repite la nueva contraseña <input type="password" name="confirmar" required minlength="6" autocomplete="new-password"></label>
+                    <button type="submit" class="admin-boton">Guardar contraseña</button>
+                </form>
+            </section>
+
+            <section id="sec-resumen" class="seccion">
+                <h2 class="admin-titulo">Resumen del negocio</h2>
+                <div id="kpis" class="admin-kpis"></div>
+            </section>
+
+            <section id="sec-productos" class="seccion oculto">
+                <h2 class="admin-titulo">Productos</h2>
+                <div class="admin-tarjeta">
+                    <div class="tabla-wrap">
+                        <table class="admin-tabla" id="tabla-productos"></table>
+                    </div>
+                </div>
+
+                <div class="admin-tarjeta">
+                    <h3 id="titulo-form-producto" class="admin-subtitulo">Nuevo producto</h3>
+                    <form id="form-producto" class="admin-form">
+                        <label>Nombre <input name="nombre" required></label>
+                        <label>Descripción <textarea name="descripcion" rows="2"></textarea></label>
+                        <div class="admin-foto">
+                            <img id="vista-foto" class="miniatura oculto" alt="Vista previa de la foto">
+                            <label>Foto del producto (desde tu computador)
+                                <input id="archivo-foto" type="file" accept="image/png,image/jpeg,image/webp">
+                            </label>
+                            <small class="admin-texto">PNG, JPG o WEBP de hasta 3 MB. Se guarda al presionar Guardar.</small>
+                        </div>
+                        <label>Ruta de la imagen (opcional) <input name="imagen" placeholder="img/Catalogo/archivo.png"></label>
+                        <label>Precio (COP) <input name="precio" type="number" min="0" step="1" required></label>
+                        <p class="admin-texto">Para rebajar el precio o hacer un 2x1, crea una promoción en la sección Promociones.</p>
+                        <div class="admin-fila">
+                            <label>Medida <input name="medida" placeholder="750 ml"></label>
+                            <label>Categoría <input name="categoria" placeholder="Ron, Whisky..."></label>
+                        </div>
+                        <div class="admin-fila">
+                            <label>Existencias (stock) <input name="stock" type="number" min="0" step="1" value="0"></label>
+                            <div class="admin-checks">
+                                <label class="admin-check"><input type="checkbox" name="popular"> Destacado</label>
+                                <label class="admin-check"><input type="checkbox" name="activo" checked> Visible en la tienda</label>
+                            </div>
+                        </div>
+                        <div class="admin-acciones">
+                            <button type="submit" class="admin-boton">Guardar</button>
+                            <button type="button" id="cancelar-producto" class="admin-boton secundario">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="sec-promociones" class="seccion oculto">
+                <h2 class="admin-titulo">Promociones</h2>
+                <p class="admin-texto">Cada producto puede tener una sola promoción activa. El <strong>descuento</strong> rebaja el precio (por porcentaje o en pesos). La <strong>promoción NxM</strong> se aplica por cantidad: al llevar N unidades se pagan M (por ejemplo 2x1 o 3x2).</p>
+                <div class="admin-tarjeta">
+                    <div class="tabla-wrap">
+                        <table class="admin-tabla" id="tabla-promociones"></table>
+                    </div>
+                </div>
+
+                <div class="admin-tarjeta">
+                    <h3 id="titulo-form-promocion" class="admin-subtitulo">Nueva promoción</h3>
+                    <form id="form-promocion" class="admin-form">
+                        <div class="admin-fila">
+                            <label>Producto <select name="productoId" required></select></label>
+                            <label>Nombre de la promoción <input name="nombre" required maxlength="60" placeholder="Fin de semana"></label>
+                        </div>
+                        <div class="admin-fila">
+                            <label>Tipo
+                                <select name="tipo">
+                                    <option value="porcentaje">Descuento por porcentaje</option>
+                                    <option value="monto">Descuento en pesos</option>
+                                    <option value="nxm">Llevas N, pagas M (ej. 2x1)</option>
+                                </select>
+                            </label>
+                            <label data-para="porcentaje monto">Valor del descuento <input name="valor" type="number" min="1" step="1"></label>
+                            <label data-para="nxm">Llevas (N) <input name="lleva" type="number" min="2" step="1"></label>
+                            <label data-para="nxm">Pagas (M) <input name="paga" type="number" min="1" step="1"></label>
+                        </div>
+                        <div class="admin-checks">
+                            <label class="admin-check"><input type="checkbox" name="activa" checked> Activa</label>
+                        </div>
+                        <div class="admin-acciones">
+                            <button type="submit" class="admin-boton">Guardar promoción</button>
+                            <button type="button" id="cancelar-promocion" class="admin-boton secundario">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="sec-facturas" class="seccion oculto">
+                <h2 class="admin-titulo">Facturas guardadas</h2>
+                <p class="admin-texto">Cada venta y cada compra web tiene su factura, las pida el cliente o no. Aquí queda el registro para consultas y auditoría.</p>
+                <div class="admin-tarjeta">
+                    <label class="admin-fila-simple">Mostrar
+                        <select id="facturas-alcance">
+                            <option value="todas">Todas las facturas</option>
+                            <option value="propias">Solo las de mis ventas</option>
+                        </select>
+                    </label>
+                    <label class="admin-fila-simple">Turno
+                        <select id="facturas-turno">
+                            <option value="">Todos los turnos</option>
+                        </select>
+                    </label>
+                    <div id="resumen-facturas" class="admin-kpis"></div>
+                </div>
+                <div class="admin-tarjeta">
+                    <div class="tabla-wrap">
+                        <table class="admin-tabla" id="tabla-facturas"></table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-pedidos-web" class="seccion oculto">
+                <h2 class="admin-titulo">Pedidos web</h2>
+                <p id="pedidos-web-estado" class="admin-texto"></p>
+                <div class="admin-tarjeta">
+                    <h3>Pendientes de atender</h3>
+                    <div class="tabla-wrap"><table class="admin-tabla" id="tabla-pedidos-pendientes"></table></div>
+                </div>
+                <div class="admin-tarjeta">
+                    <h3>Atendidos por mí</h3>
+                    <div class="tabla-wrap"><table class="admin-tabla" id="tabla-pedidos-atendidos"></table></div>
+                </div>
+            </section>
+
+            <section id="sec-venta" class="seccion oculto">
+                <h2 class="admin-titulo">Venta en tienda</h2>
+                <p id="aviso-sin-jornada" class="admin-aviso oculto">Debes marcar tu entrada en el inicio antes de registrar ventas.</p>
+
+                <div class="vend-venta">
+                    <div class="admin-tarjeta">
+                        <h3 class="admin-subtitulo">Productos</h3>
+                        <input id="buscar-producto" type="search" placeholder="Buscar producto…" aria-label="Buscar producto">
+                        <div class="tabla-wrap">
+                            <table class="admin-tabla" id="tabla-catalogo"></table>
+                        </div>
+                    </div>
+
+                    <div class="admin-tarjeta">
+                        <h3 class="admin-subtitulo">Venta actual</h3>
+                        <div class="tabla-wrap">
+                            <table class="admin-tabla" id="tabla-carrito"></table>
+                        </div>
+                        <p class="vend-total">Descuentos: <strong id="descuento-venta">$0</strong></p>
+                        <p class="vend-total">IVA (19%): <strong id="iva-venta">$0</strong></p>
+                        <p class="vend-total">Total: <strong id="total-venta">$0</strong></p>
+
+                        <form id="form-venta" class="admin-form">
+                            <label>Forma de pago
+                                <select name="formaPago" id="forma-pago">
+                                    <option value="efectivo">Efectivo</option>
+                                    <option value="tarjeta">Tarjeta (datáfono)</option>
+                                    <option value="transferencia">Transferencia</option>
+                                </select>
+                            </label>
+                            <div id="bloque-efectivo">
+                                <label>Dinero recibido (COP)
+                                    <input name="pagoRecibido" id="pago-recibido" type="number" min="0" step="1" inputmode="numeric">
+                                </label>
+                                <p class="vend-cambio">Cambio a devolver: <strong id="cambio-venta">$0</strong></p>
+                            </div>
+                            <div class="admin-checks">
+                                <label class="admin-check"><input type="checkbox" id="pedir-factura"> El cliente pide factura</label>
+                            </div>
+                            <div class="admin-fila">
+                                <label>Fecha de nacimiento del cliente <input name="verificacionFecha" id="venta-nacimiento" type="date" required></label>
+                                <label>Cédula del cliente <input name="verificacionIdentificacion" id="venta-cedula" type="text" inputmode="numeric" maxlength="10" required></label>
+                            </div>
+                            <p class="vend-cambio">Venta de licor: el cliente debe ser mayor de 18 años.</p>
+                            <div id="bloque-factura" class="oculto">
+                                <div class="admin-fila">
+                                    <label>Nombre o razón social <input name="facturaNombre" id="factura-nombre" maxlength="120" autocomplete="off"></label>
+                                    <label>Cédula o NIT <input name="facturaIdentificacion" id="factura-identificacion" maxlength="20" inputmode="numeric" autocomplete="off"></label>
+                                </div>
+                            </div>
+                            <div class="admin-acciones">
+                                <button type="submit" id="registrar-venta" class="admin-boton" disabled>Registrar venta</button>
+                                <button type="button" id="vaciar-venta" class="admin-boton secundario">Vaciar</button>
+                            </div>
+                        </form>
+                        <p id="enlace-factura-p" class="oculto">
+                            <a id="enlace-factura" class="admin-boton pequeno" target="_blank" rel="noopener">Descargar factura (PDF)</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-pedidos" class="seccion oculto">
+                <h2 class="admin-titulo">Pedidos</h2>
+                <div class="admin-tarjeta">
+                    <div class="tabla-wrap">
+                        <table class="admin-tabla" id="tabla-pedidos"></table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-turnos" class="seccion oculto">
+                <h2 class="admin-titulo">Turnos</h2>
+                <p class="admin-texto">Los turnos son fijos. Puedes cambiar su horario o desactivarlos; los vendedores con turnos futuros reciben el aviso en su perfil.</p>
+                <div class="admin-tarjeta">
+                    <div class="tabla-wrap">
+                        <table class="admin-tabla" id="tabla-turnos"></table>
+                    </div>
+                </div>
+
+                <div class="admin-tarjeta">
+                    <h3 id="titulo-form-turno" class="admin-subtitulo">Nuevo turno</h3>
+                    <form id="form-turno" class="admin-form">
+                        <div class="admin-fila">
+                            <label>Nombre <input name="nombre" required maxlength="40"></label>
+                            <div class="admin-checks">
+                                <label class="admin-check"><input type="checkbox" name="activo" checked> Activo</label>
+                            </div>
+                        </div>
+                        <div class="admin-fila">
+                            <label>Hora de inicio <input name="horaInicio" type="time" required></label>
+                            <label>Hora de fin <input name="horaFin" type="time" required></label>
+                        </div>
+                        <div class="admin-acciones">
+                            <button type="submit" class="admin-boton">Guardar turno</button>
+                            <button type="button" id="cancelar-turno" class="admin-boton secundario">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <h3 class="admin-subtitulo">Asignar turno a un vendedor</h3>
+                <div class="admin-tarjeta">
+                    <form id="form-asignacion" class="admin-form">
+                        <div class="admin-fila">
+                            <label>Vendedor <select name="vendedor" id="asig-vendedor" required></select></label>
+                            <label>Turno <select name="turno" id="asig-turno" required></select></label>
+                            <label>Fecha <input name="fecha" id="asig-fecha" type="date" required></label>
+                        </div>
+                        <div class="admin-acciones">
+                            <button type="submit" class="admin-boton">Asignar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <h3 class="admin-subtitulo">Asignaciones por fecha</h3>
+                <div class="admin-tarjeta">
+                    <div class="admin-fila">
+                        <label>Desde <input id="asig-desde" type="date"></label>
+                        <label>Hasta <input id="asig-hasta" type="date"></label>
+                    </div>
+                    <p class="admin-texto">Las fechas pasadas solo se consultan. Las de hoy en adelante se pueden quitar.</p>
+                    <div class="tabla-wrap">
+                        <table class="admin-tabla" id="tabla-asignaciones"></table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-vendedores" class="seccion oculto">
+                <h2 class="admin-titulo">Vendedores y permisos</h2>
+                <p class="admin-texto">Todo vendedor puede vender y marcar su turno. Los demás permisos se conceden uno por uno. Para convertir a un cliente en vendedor, cambia su rol en la sección Usuarios.</p>
+                <div class="admin-tarjeta">
+                    <div class="tabla-wrap">
+                        <table class="admin-tabla" id="tabla-vendedores"></table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-jornadas" class="seccion oculto">
+                <h2 class="admin-titulo">Jornadas (asistencia)</h2>
+                <p class="admin-texto">Entradas y salidas que registraron los vendedores en la fecha elegida.</p>
+                <div class="admin-tarjeta">
+                    <label class="admin-fila-simple">Fecha <input id="jornadas-fecha" type="date"></label>
+                    <div class="tabla-wrap">
+                        <table class="admin-tabla" id="tabla-jornadas"></table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-usuarios" class="seccion oculto">
+                <h2 class="admin-titulo">Usuarios</h2>
+                <p class="admin-texto">Cambia el rol de una cuenta para darle acceso de vendedor o de cliente. Los permisos de vendedor se gestionan en la sección Vendedores.</p>
+                <div class="admin-tarjeta">
+                    <div class="tabla-wrap">
+                        <table class="admin-tabla" id="tabla-usuarios"></table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-perfil" class="seccion oculto">
+                <div id="perfil-contenido"></div>
+            </section>
+
+            <section id="sec-auditoria" class="seccion oculto">
+                <h2 class="admin-titulo">Auditoría</h2>
+                <p class="admin-texto">Últimas 200 acciones administrativas y de cuentas.</p>
+                <div class="admin-tarjeta">
+                    <div class="tabla-wrap">
+                        <table class="admin-tabla" id="tabla-auditoria"></table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <span class="creditos">Cortes Kevyn, Escobar Cristiam, Gonzales Juan, Hincapie Cristian, Lopez Brayan</span>
+    </footer>
+</body>
+</html>

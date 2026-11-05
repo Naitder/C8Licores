@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EL BARRILETE</title>
+    <title>C8LICORES</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/tema-c8licores.css">
+    <link rel="stylesheet" href="css/promociones.css">
+    <link rel="stylesheet" href="css/dialogo.css">
+    <link rel="stylesheet" href="css/perfil.css">
     <script type="module" src="main.js" defer></script>
     <link  rel= "apple-touch-icon"  sizes= "57x57"  href= "favicon/apple-icon-57x57.png" >
     <link  rel= "apple-touch-icon"  sizes= "60x60"  href= "favicon/apple-icon-60x60.png" >
@@ -27,7 +31,7 @@
     <header id="cabezera" class="cabezera">
     <a href="index.html" class="nombre">
         <span class="icono1"></span>
-        <h1>EL BARRILETE</h1>
+        <h1>C8LICORES</h1>
     </a>
     
     <!-- Icono hamburguesa (visible solo en móvil) -->
@@ -47,7 +51,18 @@
             <h2>CARRITO</h2>
         </a>
 
-        <a href="#" id="btn-logout" class="salir private-nav">
+        <a href="index_admin.html" class="panel-admin productos"><h2>PANEL</h2></a>
+
+        <a href="index_perfil.html" class="perfil perfil-nav private-nav hidden">
+
+
+            <h2>PERFIL</h2>
+
+
+        </a>
+
+
+        <a href="#" id="btn-logout" class="salir private-nav hidden">
             <h2>SALIR</h2>
         </a>
     </nav>
@@ -59,11 +74,42 @@
     <aside class="carrito-resumen" id="carrito-resumen">
         <h2>Total del carrito</h2>
         <p id="carrito-total">$0</p>
-        <button class="btn-comprar">Comprar</button>
+        <p id="carrito-descuento" class="carrito-descuento" hidden></p>
+        <p id="carrito-iva" class="carrito-iva"></p>
+        <label>Dirección de entrega
+            <input id="carrito-direccion" type="text" maxlength="200" autocomplete="street-address">
+        </label>
+        <label>Forma de pago
+            <select id="carrito-pago">
+                <option value="contra_entrega">Contra entrega</option>
+                <option value="transferencia">Transferencia bancaria</option>
+                <option value="manual">Pago manual</option>
+            </select>
+        </label>
+        <p class="carrito-aviso-edad">Venta de licor: solo a mayores de 18 años.</p>
+        <label>Fecha de nacimiento
+            <input id="carrito-nacimiento" type="date" autocomplete="bday">
+        </label>
+        <label>Cédula
+            <input id="carrito-cedula" type="text" maxlength="10" inputmode="numeric" autocomplete="off">
+        </label>
+        <label class="carrito-factura-opcion">
+            <input id="carrito-factura" type="checkbox"> Quiero factura
+        </label>
+        <div id="carrito-factura-datos" class="oculto">
+            <label>Nombre o razón social
+                <input id="carrito-factura-nombre" type="text" maxlength="80" autocomplete="off">
+            </label>
+            <label>Cédula o NIT
+                <input id="carrito-factura-id" type="text" maxlength="20" autocomplete="off" inputmode="numeric">
+            </label>
+        </div>
+        <p id="carrito-aviso" class="carrito-aviso" role="status"></p>
+        <button class="btn-comprar" disabled>Comprar</button>
     </aside>
 </main>
     <footer>
-        <span class="creditos">Basante Andres, Belalcazar Naomy, Cortes Kevyn, Escobar Cristiam, Gonzales Juan</span>
+        <span class="creditos">Cortes Kevyn, Escobar Cristiam, Gonzales Juan, Hincapie Cristian, Lopez Brayan</span>
     </footer>
 </body>
 </html>

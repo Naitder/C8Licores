@@ -1,10 +1,19 @@
 {
-  "name": "el-barrilete",
-  "version": "2.0.0",
-  "description": "Tienda de licores El Barrilete - versión orientada a objetos (SOLID)",
+  "name": "c8licores",
+  "version": "3.0.15",
+  "description": "Tienda de licores C8Licores: frontend modular y API con SQLite",
+  "author": "Cristiam Andrés Escobar Ceron",
   "type": "module",
   "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
-    "test": "node --test tests/*.test.js"
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "test": "node --disable-warning=ExperimentalWarning --test tests/*.test.js"
+  },
+  "dependencies": {
+    "express": "^4.22.3",
+    "pdfkit": "^0.15.1"
   }
 }
