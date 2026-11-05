@@ -14,6 +14,7 @@ body {
     background-position: center;
     background-attachment: fixed;
     min-height: 100vh;
+    min-height: 100dvh;
     width: 100%;
     color: white;
     display: flex;
@@ -80,7 +81,7 @@ header.cabezera {
     gap: 15px;
 }
 
-.carrito, .nosotros, .productos, .volver-inicio, .iniciar-sesion, .registrarse, .salir {
+.carrito, .perfil, .nosotros, .productos, .volver-inicio, .iniciar-sesion, .registrarse, .salir {
     padding: 12px 35px;
     background: rgba(20, 20, 20, 0.8); 
     -webkit-text-fill-color: initial; 
@@ -96,7 +97,7 @@ header.cabezera {
     border: 1px solid #c5a059;
 }
 
-.carrito h2, .nosotros h2, .productos h2, .volver-inicio h2, .iniciar-sesion h2, .registrarse h2, .salir h2, .carrito, .nosotros, .productos, .volver-inicio, .iniciar-sesion, .registrarse {
+.carrito h2, .perfil h2, .nosotros h2, .productos h2, .volver-inicio h2, .iniciar-sesion h2, .registrarse h2, .salir h2, .carrito, .perfil, .nosotros, .productos, .volver-inicio, .iniciar-sesion, .registrarse {
     background: linear-gradient(to bottom, #96703d 0%, #f3d596 50%, #96703d 100%);
     background-clip: text;
     -webkit-background-clip: text;
@@ -114,7 +115,7 @@ header.cabezera {
     -webkit-text-fill-color: transparent;
 }
 
-.carrito:hover, .nosotros:hover, .productos:hover, .volver-inicio:hover, .iniciar-sesion:hover, .registrarse:hover {
+.carrito:hover, .perfil:hover, .nosotros:hover, .productos:hover, .volver-inicio:hover, .iniciar-sesion:hover, .registrarse:hover {
     border-color: #f3d596;
     background: #1a1a1a;
     box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
@@ -126,7 +127,7 @@ header.cabezera {
     box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
 }
 
-.carrito::after, .nosotros::after, .productos::after, .volver-inicio::after, .iniciar-sesion::after, .registrarse::after, .salir::after {
+.carrito::after, .perfil::after, .nosotros::after, .productos::after, .volver-inicio::after, .iniciar-sesion::after, .registrarse::after, .salir::after {
     content: "";
     position: absolute;
     top: 0;
@@ -143,7 +144,7 @@ header.cabezera {
     background: radial-gradient(circle, rgba(139, 0, 0, 0.4) 0%, transparent 70%);
 }
 
-.carrito:hover::after, .nosotros:hover::after, .productos:hover::after {
+.carrito:hover::after, .perfil:hover::after, .nosotros:hover::after, .productos:hover::after {
     transform: scale(4);
 }
 
@@ -862,7 +863,7 @@ PAGINA DE USUARIO
         box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
     }
 
-    /* Título con el gradiente dorado oficial de EL BARRILETE */
+    /* Título con el gradiente dorado oficial de C8LICORES */
     .login-card h2 {
         text-align: center;
         margin-bottom: 10px;
@@ -1034,18 +1035,23 @@ PIE DE PÁGINA (GLOBAL)
 
 footer {
     width: 100%;
-    height: 50px;
+    /* Crece con su contenido: los nombres pueden ocupar varias líneas en el celular. */
+    min-height: 50px;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(197, 160, 89, 0.2);
-    padding: 20px 5%;
+    padding: 14px 5% calc(14px + env(safe-area-inset-bottom, 0px));
     margin-top: auto;
+    text-align: center;
 }
 
 .creditos {
+    display: block;
+    line-height: 1.5;
     font-size: 0.9rem;
     letter-spacing: 0.5px;
     background: linear-gradient(to bottom, #96703d 0%, #f3d596 50%, #96703d 100%);
@@ -1053,4 +1059,37 @@ footer {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
+}
+
+/* =============================================
+PIE FIJO (paneles de administrador y vendedor, y perfil)
+Siempre visible al fondo de la pantalla con los créditos.
+============================================= */
+body.pie-fijo {
+    --pie-alto: 64px;
+    padding-bottom: var(--pie-alto);
+}
+
+body.pie-fijo footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    min-height: 0;
+    height: var(--pie-alto);
+    padding: 8px 5%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body.pie-fijo .creditos {
+    font-size: 0.8rem;
+    line-height: 1.35;
+}
+
+@media (max-width: 860px) {
+    body.pie-fijo {
+        --pie-alto: 84px;
+    }
 }

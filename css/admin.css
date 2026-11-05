@@ -1,0 +1,456 @@
+/* Panel de administración C8LICORES. Usa las variables de tema-c8licores.css. */
+
+.oculto {
+    display: none !important;
+}
+
+.admin-body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+.admin-cargando {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    color: var(--c8-texto-suave);
+}
+
+/* Diseño de dos columnas: menú lateral + contenido */
+.admin-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+
+.admin-menu {
+    background: rgba(8, 5, 3, 0.85);
+    border-right: 1px solid var(--c8-borde);
+    padding: 1.5rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    position: sticky;
+    top: 0;
+    /* Descuenta el pie fijo (ver styles.css, body.pie-fijo). */
+    height: calc(100vh - var(--pie-alto, 0px));
+    box-sizing: border-box;
+}
+
+.admin-logo {
+    font-size: 1.5rem;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.admin-usuario {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--c8-texto-suave);
+    text-align: center;
+}
+
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    /* Si hay muchas secciones, la lista se desplaza sola y el pie del menú queda visible. */
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 0.3rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--c8-borde) transparent;
+}
+
+.admin-nav::-webkit-scrollbar {
+    width: 6px;
+}
+
+.admin-nav::-webkit-scrollbar-thumb {
+    background: var(--c8-borde);
+    border-radius: 3px;
+}
+
+.admin-nav button {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--c8-texto);
+    text-align: left;
+    padding: 0.7rem 0.9rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.admin-nav button:hover:not(:disabled) {
+    border-color: var(--c8-borde);
+    background: rgba(217, 173, 85, 0.08);
+}
+
+.admin-nav button.activo {
+    background: linear-gradient(90deg, rgba(217, 173, 85, 0.25), rgba(217, 173, 85, 0.05));
+    border-color: var(--c8-borde);
+    color: var(--c8-oro-claro);
+    font-weight: 700;
+}
+
+.admin-nav button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.admin-menu-pie {
+    margin-top: auto;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.admin-enlace {
+    color: var(--c8-oro-claro);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.admin-contenido {
+    padding: 1.8rem 2rem 3rem;
+    min-width: 0;
+}
+
+.admin-titulo {
+    margin: 0 0 1rem;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.admin-subtitulo {
+    margin: 0 0 0.8rem;
+    color: var(--c8-oro-claro);
+}
+
+.admin-texto {
+    color: var(--c8-texto-suave);
+    margin: 0 0 1rem;
+}
+
+.admin-tarjeta {
+    background: var(--c8-vidrio);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--c8-borde);
+    border-radius: 16px;
+    padding: 1.3rem;
+    margin-bottom: 1.4rem;
+    max-width: 920px;
+    box-sizing: border-box;
+}
+
+/* Indicadores */
+.admin-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 1rem;
+}
+
+.admin-kpi {
+    background: var(--c8-vidrio);
+    border: 1px solid var(--c8-borde);
+    border-radius: 16px;
+    padding: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.admin-kpi span {
+    color: var(--c8-texto-suave);
+    font-size: 0.85rem;
+}
+
+.admin-kpi strong {
+    color: var(--c8-oro-claro);
+    font-size: 1.5rem;
+}
+
+/* Formularios */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    max-width: 680px;
+}
+
+.admin-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    color: var(--c8-texto-suave);
+}
+
+.admin-form input,
+.admin-form textarea {
+    padding: 0.6rem 0.75rem;
+    font: inherit;
+    color: var(--c8-texto);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+}
+
+.admin-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.admin-check {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 0.5rem !important;
+    color: var(--c8-texto) !important;
+}
+
+.admin-check input {
+    width: auto !important;
+    accent-color: var(--c8-oro);
+}
+
+.admin-acciones {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+}
+
+.admin-boton {
+    padding: 0.65rem 1.2rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.admin-boton.pequeno {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    margin: 0.15rem;
+}
+
+.admin-boton.secundario {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: var(--c8-texto) !important;
+    box-shadow: none;
+    border: 1px solid var(--c8-borde) !important;
+}
+
+/* Tablas */
+.tabla-wrap {
+    overflow-x: auto;
+}
+
+.admin-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.admin-tabla th,
+.admin-tabla td {
+    text-align: left;
+    padding: 0.65rem 0.6rem;
+    border-bottom: 1px solid rgba(217, 173, 85, 0.15);
+    vertical-align: middle;
+}
+
+.admin-tabla th {
+    color: var(--c8-oro-claro);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+}
+
+.admin-tabla select {
+    padding: 0.3rem 0.5rem;
+    font: inherit;
+}
+
+.admin-tabla .vacio {
+    text-align: center;
+    color: var(--c8-texto-suave);
+    padding: 1.5rem;
+}
+
+.admin-tabla .detalle {
+    max-width: 320px;
+    word-break: break-word;
+    font-size: 0.8rem;
+    color: var(--c8-texto-suave);
+}
+
+.acciones-celda {
+    white-space: nowrap;
+}
+
+.miniatura {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+/* Etiquetas de estado */
+.chip {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: 1px solid transparent;
+}
+
+.chip-disponible,
+.chip-completado {
+    background: rgba(76, 175, 80, 0.18);
+    color: #9be49e;
+    border-color: rgba(76, 175, 80, 0.45);
+}
+
+.chip-agotado,
+.chip-pendiente_pago {
+    background: rgba(217, 173, 85, 0.16);
+    color: var(--c8-oro-claro);
+    border-color: rgba(217, 173, 85, 0.45);
+}
+
+.chip-inactivo,
+.chip-cancelado {
+    background: rgba(139, 0, 0, 0.25);
+    color: #ffb3b3;
+    border-color: rgba(255, 102, 102, 0.4);
+}
+
+/* Avisos */
+.admin-aviso {
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1.2rem;
+    background: rgba(139, 0, 0, 0.35);
+    border: 1px solid rgba(255, 102, 102, 0.5);
+    color: #ffd6d6;
+    max-width: 920px;
+}
+
+.admin-aviso.ok {
+    background: rgba(76, 175, 80, 0.2);
+    border-color: rgba(76, 175, 80, 0.55);
+    color: #d7f5d8;
+}
+
+/* Botón «Menú» de tableta y celular; en pantalla ancha no se muestra */
+.admin-menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--c8-borde);
+    color: var(--c8-oro-claro);
+    border-radius: 10px;
+    padding: 0.5rem 0.9rem;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.admin-menu-toggle-barras {
+    display: inline-block;
+    width: 18px;
+    height: 12px;
+    background:
+        linear-gradient(var(--c8-oro-claro), var(--c8-oro-claro)) top / 100% 2px no-repeat,
+        linear-gradient(var(--c8-oro-claro), var(--c8-oro-claro)) center / 100% 2px no-repeat,
+        linear-gradient(var(--c8-oro-claro), var(--c8-oro-claro)) bottom / 100% 2px no-repeat;
+}
+
+/* Móvil y tableta: el menú queda arriba con un botón «Menú» que despliega las secciones */
+@media (max-width: 860px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-menu {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--c8-borde);
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .admin-menu-toggle {
+        display: inline-flex;
+    }
+
+    /* Cerrado: solo logo y botón. Abierto: secciones, usuario y pie. */
+    .admin-usuario,
+    .admin-nav,
+    .admin-menu-pie {
+        display: none;
+    }
+
+    .admin-menu.abierto .admin-usuario,
+    .admin-menu.abierto .admin-nav,
+    .admin-menu.abierto .admin-menu-pie {
+        display: flex;
+    }
+
+    .admin-menu.abierto .admin-usuario {
+        display: block;
+    }
+
+    .admin-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    /* Menú desplegado: la lista tiene su propia barra de desplazamiento y no obliga a bajar la página. */
+    .admin-menu.abierto .admin-nav {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        flex: none;
+        max-height: 55vh;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--c8-borde) transparent;
+    }
+
+    .admin-menu-pie {
+        margin-top: 0;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .admin-contenido {
+        padding: 1.2rem 1rem 2rem;
+    }
+
+    .admin-fila {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Permisos de vendedor: una lista vertical, una casilla por línea. */
+.permisos-lista { display: flex; flex-direction: column; gap: 0.35rem; }
+.permisos-lista .admin-check { display: flex; align-items: center; gap: 0.4rem; }
+
+/* Foto del producto en el formulario de admin */
+.admin-foto { display: flex; flex-direction: column; gap: 6px; }
+.admin-foto .miniatura { width: 96px; height: 96px; object-fit: cover; }

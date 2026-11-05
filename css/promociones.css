@@ -1,0 +1,42 @@
+/* Promociones, precios y existencias en la tienda. */
+
+.card { position: relative; }
+.card-agotado .card-img { filter: grayscale(0.8); opacity: 0.6; }
+
+.card-promo {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    background: #b3261e;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+}
+
+.card-precios { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+.card-precio-anterior { opacity: 0.6; font-size: 0.9rem; }
+
+.carrito-resumen label { display: block; margin: 0.8rem 0 0.3rem; font-size: 0.9rem; text-align: left; }
+.carrito-resumen input,
+.carrito-resumen select { width: 100%; padding: 0.5rem; box-sizing: border-box; }
+.carrito-descuento { color: #1b6e3a; font-weight: 600; margin: 0.3rem 0 0; }
+.carrito-aviso { min-height: 1.2em; font-size: 0.9rem; margin: 0.6rem 0; }
+.carrito-aviso.error { color: #b3261e; }
+.carrito-aviso.ok { color: #1b6e3a; }
+.carrito-iva { margin: 0.2rem 0 0; font-size: 0.9rem; opacity: 0.85; }
+.carrito-factura-opcion { flex-direction: row; align-items: center; gap: 0.5rem; }
+.carrito-factura-opcion input { width: auto; }
+.mis-pedidos { max-width: 1100px; margin: 1.5rem auto; padding: 0 1rem; }
+.mis-pedidos-ayuda { opacity: 0.8; }
+.mis-pedidos-lista { display: flex; flex-direction: column; gap: 0.8rem; }
+.pedido-tarjeta { border: 1px solid #5a4530; border-radius: 12px; padding: 0.9rem 1.1rem; display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; align-items: center; justify-content: space-between; }
+.pedido-tarjeta h3 { margin: 0; font-size: 1rem; }
+.pedido-tarjeta p { margin: 0.2rem 0 0; font-size: 0.9rem; opacity: 0.85; }
+.pedido-acciones { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.pedido-acciones a, .pedido-acciones button { padding: 0.45rem 0.9rem; border-radius: 999px; border: 1px solid #b8893b; background: transparent; color: inherit; cursor: pointer; text-decoration: none; }
+.carrito-item-promo { font-size: 0.85rem; color: #1b6e3a; margin: 0; }
+.carrito-item-sin-stock { font-size: 0.85rem; color: #b3261e; margin: 0; }
+.btn-comprar:disabled { opacity: 0.5; cursor: not-allowed; }
+.carrito-aviso-edad { font-size: 0.85rem; opacity: 0.85; margin: 0.6rem 0 0; }

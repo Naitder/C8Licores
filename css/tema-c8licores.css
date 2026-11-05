@@ -1,0 +1,217 @@
+/*
+ * Tema C8LICORES (basado en el modelo de la pantalla de ingreso).
+ * Se carga después de styles.css: solo sobrescribe colores, fondos,
+ * botones, campos y el logo. El diseño y la distribución no cambian.
+ */
+
+:root {
+    --c8-oro: #d9ad55;
+    --c8-oro-claro: #f3d596;
+    --c8-oro-oscuro: #96703d;
+    --c8-texto: #f5ecd9;
+    --c8-texto-suave: #b9ab92;
+    --c8-vidrio: rgba(18, 12, 7, 0.62);
+    --c8-borde: rgba(217, 173, 85, 0.38);
+}
+
+/* Fondo: penumbra de barra con halo cálido, como en el modelo */
+body {
+    background:
+        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(150, 90, 30, 0.38), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(120, 70, 20, 0.25), transparent 70%),
+        linear-gradient(180deg, #1a100a 0%, #0b0705 60%, #050302 100%) !important;
+    color: var(--c8-texto);
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* Cabecera */
+header.cabezera {
+    background: rgba(10, 7, 4, 0.78) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--c8-borde);
+}
+
+/* Logo metálico: "C8" en placa dorada y "LICORES" en plata */
+.c8-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    text-decoration: none;
+    font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    line-height: 1;
+}
+
+.c8-logo-badge {
+    display: inline-block;
+    padding: 0.28em 0.38em;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #fff1c8 0%, #d9ad55 45%, #8a5d1e 100%);
+    color: #14100a;
+    box-shadow: 0 0 14px rgba(217, 173, 85, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.c8-logo-texto {
+    background: linear-gradient(180deg, #ffffff 0%, #d9d9d9 45%, #8d8d8d 55%, #e8e8e8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+header.cabezera .nombre h1 {
+    background: linear-gradient(180deg, #ffffff 0%, #d9d9d9 45%, #8d8d8d 55%, #e8e8e8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Botones dorados */
+.btn-explora,
+.btn-comprar,
+.btn-primary-link,
+.admin-boton {
+    background: linear-gradient(180deg, #ecc47f 0%, #d9ad55 50%, #b98a36 100%) !important;
+    color: #17110a !important;
+    border: none !important;
+    border-radius: 10px !important;
+    box-shadow: 0 6px 18px rgba(217, 173, 85, 0.25);
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.btn-explora:hover,
+.btn-comprar:hover,
+.btn-primary-link:hover,
+.admin-boton:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+    box-shadow: 0 10px 26px rgba(217, 173, 85, 0.38);
+}
+
+.btn-primary-link h2,
+.btn-primary-link h2 * {
+    color: #17110a !important;
+}
+
+/* Tarjetas de vidrio (formularios, tarjetas de producto, paneles) */
+.login-card,
+.registro-card,
+.card,
+.producto-tarjeta,
+.carrito-resumen {
+    background: var(--c8-vidrio) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--c8-borde) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Campos de texto */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    background: rgba(0, 0, 0, 0.38) !important;
+    border: 1px solid rgba(217, 173, 85, 0.45) !important;
+    border-radius: 10px !important;
+    color: var(--c8-texto) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--c8-texto-suave);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--c8-oro-claro) !important;
+    box-shadow: 0 0 0 3px rgba(217, 173, 85, 0.22);
+}
+
+/* Títulos y textos de acento */
+h2,
+.login-card h2 {
+    color: var(--c8-oro-claro);
+}
+
+/* Pie de página */
+footer {
+    background: rgba(8, 5, 3, 0.85) !important;
+    border-top: 1px solid var(--c8-borde);
+    color: var(--c8-texto-suave);
+    height: auto;
+}
+
+footer .creditos {
+    color: var(--c8-texto-suave);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+}
+
+/* Enlace al panel (solo visible para el superadministrador) */
+.panel-admin {
+    display: none;
+}
+
+/* Responsivo: el logo y los botones no se salen de la pantalla en móvil */
+@media (max-width: 600px) {
+    .c8-logo-texto {
+        font-size: 0.9em;
+    }
+}
+
+/* Leyenda bajo el formulario de ingreso (modelo) */
+.login-tagline {
+    margin: 1.2rem 0 0;
+    text-align: center;
+    color: var(--c8-texto-suave);
+    font-size: 0.85rem;
+}
+
+/* Correcciones tras la revisión visual */
+
+/* Tipografía sans-serif, como en el modelo */
+body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* El texto de los botones dorados debe ser oscuro: la hoja original usa un
+   degradado con recorte de texto que lo hacía invisible sobre el fondo dorado. */
+.btn-primary-link h2,
+.btn-explora h2,
+.btn-comprar h2 {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: #17110a !important;
+    color: #17110a !important;
+}
+
+/* Todos los campos de texto (con o sin atributo type) */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+textarea,
+select {
+    background: rgba(0, 0, 0, 0.38) !important;
+    border: 1px solid rgba(217, 173, 85, 0.45) !important;
+    border-radius: 10px !important;
+    color: var(--c8-texto) !important;
+}
+
+/* Enlaces de la barra superior: "SALIR" en dorado legible en lugar de rojo */
+.nav-botones a.salir h2 {
+    color: var(--c8-oro-claro) !important;
+    -webkit-text-fill-color: var(--c8-oro-claro) !important;
+    background: none !important;
+}

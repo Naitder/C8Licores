@@ -1,0 +1,109 @@
+/* Estilos del módulo de vendedor y de las secciones de turnos del panel.
+   Reutiliza las variables de css/tema-c8licores.css y las clases de css/admin.css. */
+
+.vend-grid-inicio,
+.vend-venta {
+    display: grid;
+    gap: 16px;
+    align-items: start;
+}
+
+.vend-grid-inicio {
+    grid-template-columns: 1fr 1fr;
+}
+
+.vend-venta {
+    grid-template-columns: 1.3fr 1fr;
+}
+
+.vend-total {
+    font-size: 1.15rem;
+    margin: 12px 0;
+}
+
+.vend-cambio {
+    margin: 8px 0 12px;
+}
+
+#buscar-producto {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.vend-contador {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--c8-oro);
+    color: #17110a;
+    font-size: .8rem;
+    font-weight: 700;
+}
+
+.vend-notificaciones {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.vend-notificaciones li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--c8-borde);
+    border-radius: 10px;
+}
+
+.vend-notificaciones li.nueva {
+    border-color: var(--c8-oro);
+}
+
+.vend-notificaciones small {
+    color: var(--c8-texto-suave);
+}
+
+.permisos-celda .admin-check {
+    display: block;
+    font-size: .9rem;
+    margin: 2px 0;
+}
+
+.admin-fila-simple {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 860px) {
+    .vend-grid-inicio,
+    .vend-venta {
+        grid-template-columns: 1fr;
+    }
+}
+
+#tabla-carrito input[type=number] {
+    width: 72px;
+    padding: 6px 8px;
+}
+
+#forma-pago {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--c8-borde);
+    background: #120e09;
+    color: var(--c8-texto);
+}
+
+/* Venta y productos: promociones, existencias y edición en línea. */
+.vend-promo { display: block; color: #1b6e3a; font-weight: 600; }
+.vend-sin-stock { display: block; color: #b3261e; }
+.fila-edicion td { background: rgba(0, 0, 0, 0.03); }
+.fila-edicion-campos { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; }
+.fila-edicion-campos input { width: 9rem; }
